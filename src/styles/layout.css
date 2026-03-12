@@ -1,0 +1,29 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #f8fafc;
+}
+
+.sidebar-container {
+  flex-shrink: 0;
+}
+
+.main-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.main-section > header {
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 15px;
+  min-width: 0;
+}

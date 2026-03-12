@@ -1,0 +1,144 @@
+.add-employee-container {
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.add-employee-form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.add-employee-form > * {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.action-container {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  .add-employee-form {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .add-employee-container {
+    padding: 24px;
+  }
+
+  .add-employee-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .button-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-employee-container {
+    padding: 18px;
+  }
+
+  .add-employee-form {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .button-container button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-employee-container {
+    padding: 15px;
+  }
+
+  h4 {
+    font-size: 17px;
+  }
+}
+
+.profile-picker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.profile-circle-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0;
+}
+
+.camera-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.camera-overlay img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+.table-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+}
+
+.no-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  color: #888;
+  font-size: 10px;
+  text-align: center;
+}
