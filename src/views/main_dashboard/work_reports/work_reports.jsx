@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import DataTable from "../../../components/custom_data_table";
-import { CustomDropdownField, CustomTextField } from "../../../components/custom_text_and_dropdown_field";
+import {
+  CustomDropdownField,
+  CustomTextField,
+} from "../../../components/custom_text_and_dropdown_field";
 import "../../../styles/employee.css";
 import CustomButton from "../../../components/custom_button";
 import { getAllEmployees } from "../../../services/employee_service";
@@ -130,7 +133,7 @@ function WorkReports() {
     };
 
     fetchData();
-  }, []);
+  }, [today]);
 
   if (isLoading) {
     return <CustomLoadingindicator />;

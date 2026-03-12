@@ -225,7 +225,7 @@ function Projects() {
   useEffect(() => {
     getAllProjectsData();
     getAllClientData();
-  }, []);
+  }, [getAllProjectsData, getAllClientData]);
 
   const filteredProjects = projects.filter((p) => {
     const searchText = search.toLowerCase();

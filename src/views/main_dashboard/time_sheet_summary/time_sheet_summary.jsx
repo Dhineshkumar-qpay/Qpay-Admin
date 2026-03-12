@@ -50,6 +50,7 @@ function TimeSheetSummary() {
         };
 
         const response = await getTimeSheetSummary(data);
+
         if (response.status === "success") {
           const resultWithSno = (response.data || []).map((item, index) => ({
             ...item,
@@ -65,7 +66,7 @@ function TimeSheetSummary() {
         setLoading(false);
       }
     },
-    [employeeFilter, projectFilter, monthFilter, yearFilter],
+    [employeeFilter, projectFilter, monthFilter, yearFilter, monthName],
   );
 
   useEffect(() => {
@@ -75,9 +76,10 @@ function TimeSheetSummary() {
       await fetchSummaries({});
       setIsDataLoading(false);
     };
-    initialize();
-  }, []);
 
+    initialize();
+  }, [fetchSummaries]);
+  
   const handleReset = () => {
     setEmployeeFilter("");
     setProjectFilter("");
