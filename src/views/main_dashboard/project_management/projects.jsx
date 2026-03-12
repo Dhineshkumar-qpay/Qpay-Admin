@@ -18,6 +18,7 @@ import {
 import { toast } from "react-toastify";
 import { ConfirmationDialog } from "../../../components/logout.jsx";
 import { getAllClients } from "../../../services/client_service.js";
+import CustomLoadingindicator from "../../../components/custom_loading.jsx";
 
 function Projects() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,6 +30,7 @@ function Projects() {
   const [isUpdate, setIsUpdate] = useState(false);
   const [clients, setClients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const [clientFilter, setClientFilter] = useState(0);
 
   const [formData, setFormData] = useState({
@@ -223,8 +225,12 @@ function Projects() {
   }, []);
 
   useEffect(() => {
-    getAllProjectsData();
-    getAllClientData();
+    const loadInitialData = async () => {
+      setIsPageLoading(true);
+      await Promise.all([getAllProjectsData(), getAllClientData()]);
+      setIsPageLoading(false);
+    };
+    loadInitialData();
   }, [getAllProjectsData, getAllClientData]);
 
   const filteredProjects = projects.filter((p) => {
@@ -319,6 +325,10 @@ function Projects() {
       ),
     },
   ];
+
+  if (isPageLoading) {
+    return <CustomLoadingindicator />;
+  }
 
   return (
     <div>

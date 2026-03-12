@@ -19,12 +19,15 @@ function MainDashboard() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar isOpen={isSidebarOpen} />
+      {isMobile && isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={closeSidebar}></div>
+      )}
+      <Sidebar isOpen={isSidebarOpen} onItemClick={closeSidebar} />
 
       <div className="main-section">
         <Header toggleSidebar={toggleSidebar} />
 
-        <div className="content" onClick={closeSidebar}>
+        <div className="content">
           <Outlet />
         </div>
       </div>

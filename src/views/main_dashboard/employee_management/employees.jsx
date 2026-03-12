@@ -477,7 +477,7 @@ function Employees() {
 
         <div className="button-container">
           <CustomButton
-            text={isUpdate ? "Update" : isSubmitting ? "Loading..." : "Submit"}
+            text={isSubmitting ? "Loading..." : isUpdate ? "Update" : "Submit"}
             onClick={handleSubmit}
             disabled={isSubmitting}
           />

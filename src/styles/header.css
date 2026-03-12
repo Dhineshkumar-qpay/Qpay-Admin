@@ -1,30 +1,51 @@
 .header {
-  height: 50px;
+  height: 60px;
   display: flex;
   align-items: center;
   padding: 0 20px;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  border: 1px solid transparent;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e2e8f0;
   justify-content: space-between;
+  z-index: 100;
 }
 
 .menu-btn {
-  font-size: 16px;
+  font-size: 20px;
   margin-right: 15px;
   background: none;
   border: none;
-  color: #14b8a6;
+  color: #06433e;
   cursor: pointer;
-  border: 1px solid #14b8a6;
-  border-radius: 4px;
-  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.menu-btn:hover {
+  background-color: #f1f5f9;
 }
 
 .header-title {
   margin: 0;
-  font-size: 16px;
-  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  color: #06433e;
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 12px;
+  }
+
+  .header-title {
+    font-size: 15px;
+  }
 }
 
 .main-section {

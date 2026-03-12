@@ -42,7 +42,7 @@ function NaviLink({ label, icon = null, onClick, isActive }) {
   );
 }
 
-function Sidebar({ isOpen }) {
+function Sidebar({ isOpen, onItemClick }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -50,6 +50,11 @@ function Sidebar({ isOpen }) {
 
   const toggleSubmenu = (menu) => {
     setOpenSubmenu((prev) => (prev === menu ? null : menu));
+  };
+
+  const handleNavigate = (route) => {
+    navigate(route);
+    if (onItemClick) onItemClick();
   };
 
   // Automatically open the submenu if one of its children is active
@@ -80,7 +85,7 @@ function Sidebar({ isOpen }) {
             icon={"https://cdn-icons-png.flaticon.com/128/17045/17045269.png"}
             isActive={location.pathname === AppRoutes.dashboard}
             onClick={() => {
-              navigate(AppRoutes.dashboard);
+              handleNavigate(AppRoutes.dashboard);
             }}
           />
 
@@ -95,7 +100,7 @@ function Sidebar({ isOpen }) {
                 label="Employees"
                 isActive={location.pathname === AppRoutes.employees}
                 onClick={() => {
-                  navigate(AppRoutes.employees);
+                  handleNavigate(AppRoutes.employees);
                 }}
               />
             </ul>
@@ -111,7 +116,7 @@ function Sidebar({ isOpen }) {
                 label="Clients"
                 isActive={location.pathname === AppRoutes.clients}
                 onClick={() => {
-                  navigate(AppRoutes.clients);
+                  handleNavigate(AppRoutes.clients);
                 }}
               />
             </ul>
@@ -127,14 +132,14 @@ function Sidebar({ isOpen }) {
                 label="Projects"
                 isActive={location.pathname === AppRoutes.projects}
                 onClick={() => {
-                  navigate(AppRoutes.projects);
+                  handleNavigate(AppRoutes.projects);
                 }}
               />
               <NaviLink
                 label="Project Module"
                 isActive={location.pathname === AppRoutes.projectModule}
                 onClick={() => {
-                  navigate(AppRoutes.projectModule);
+                  handleNavigate(AppRoutes.projectModule);
                 }}
               />
             </ul>
@@ -150,7 +155,7 @@ function Sidebar({ isOpen }) {
                 label="Assign Project"
                 isActive={location.pathname === AppRoutes.assignProject}
                 onClick={() => {
-                  navigate(AppRoutes.assignProject);
+                  handleNavigate(AppRoutes.assignProject);
                 }}
               />
             </ul>
@@ -166,7 +171,7 @@ function Sidebar({ isOpen }) {
                 label="All Reports"
                 isActive={location.pathname === AppRoutes.workreports}
                 onClick={() => {
-                  navigate(AppRoutes.workreports);
+                  handleNavigate(AppRoutes.workreports);
                 }}
               />
             </ul>
@@ -182,7 +187,7 @@ function Sidebar({ isOpen }) {
                 label="Summary"
                 isActive={location.pathname === AppRoutes.summmary}
                 onClick={() => {
-                  navigate(AppRoutes.summmary);
+                  handleNavigate(AppRoutes.summmary);
                 }}
               />
             </ul>

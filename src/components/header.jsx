@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/header.css";
 import useDeviceType from "./usewindowsize";
-import {LogoutComponent} from "./logout";
+import { LogoutComponent } from "./logout";
 
 function Header({ toggleSidebar }) {
   const { isMobile } = useDeviceType();
@@ -13,7 +13,7 @@ function Header({ toggleSidebar }) {
         </button>
       )}
       <h3 className="header-title">QPAY MASTER</h3>
-      <LogoutComponent/>
+      <LogoutComponent text={!isMobile} />
     </div>
   );
 }

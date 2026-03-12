@@ -23,6 +23,7 @@ import { ConfirmationDialog } from "../../../components/logout";
 function AssignProjects() {
   const [search, setSearch] = useState("");
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const [employees, setEmployees] = useState([]);
@@ -97,6 +98,7 @@ function AssignProjects() {
 
     if (Object.keys(errors).length > 0) return;
 
+    setIsSubmitting(true);
     try {
       let responseData;
       if (formData.assignmentid === 0 || !formData.assignmentid) {
@@ -118,6 +120,8 @@ function AssignProjects() {
       }
     } catch (error) {
       toast.error(error.message || "Failed to save assignment");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -415,8 +419,9 @@ function AssignProjects() {
 
         <div className="button-container">
           <CustomButton
-            text={isUpdate ? "Update" : "Submit"}
+            text={isSubmitting ? "Loading..." : isUpdate ? "Update" : "Submit"}
             onClick={handleSubmit}
+            disabled={isSubmitting}
           />
           <CustomButton text="Reset" isResetBtn onClick={handleReset} />
         </div>

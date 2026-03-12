@@ -70,7 +70,7 @@ function DataTable({
       </div>
       {totalPages !== 0 && (
         <div className="data-table-pagination">
-          <span>
+          <span className="data-table-pagination-info">
             Page {currentPage} of {totalPages}
           </span>
 

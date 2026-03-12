@@ -182,7 +182,8 @@ function WorkReports() {
         {/* Buttons */}
         <div className="button-container">
           <CustomButton
-            text="Submit"
+            text={isLoading ? "Loading..." : "Submit"}
+            disabled={isLoading}
             onClick={async () => {
               setIsLoading(true);
               await getAllReportsData({

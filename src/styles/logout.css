@@ -1,16 +1,33 @@
 .logout-btn {
   display: flex;
   font-size: 14px;
-  font-weight: 500;
-  gap: 12px;
+  font-weight: 600;
+  gap: 8px;
   cursor: pointer;
-  margin: 10px 15px 20px;
-  padding: 10px 12px;
+  margin: 0;
+  padding: 8px 12px;
   border-radius: 8px;
   align-items: center;
-  color: #000000;
+  color: #ef4444;
   transition: all 0.2s ease;
   user-select: none;
+  background-color: transparent;
+}
+
+.logout-btn:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .logout-btn {
+    padding: 6px 10px;
+    gap: 0;
+  }
+
+  .logout-btn span {
+    display: none;
+  }
 }
 
 .logout-btn:hover {
