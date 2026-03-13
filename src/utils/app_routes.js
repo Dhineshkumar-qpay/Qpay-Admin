@@ -9,6 +9,7 @@ const AppRoutes = {
   assignmentList: "/assignment-list",
   workreports: "/work-reports",
   summmary: "/summary",
+  leave: "/leave",
   clients: "/clients",
 };
 

@@ -5,9 +5,9 @@
 }
 
 .dashboard-title {
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 35px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
   color: #1e293b;
   letter-spacing: 0.5px;
 }
@@ -37,7 +37,7 @@
 
 .dashboard-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .card-left {
@@ -55,9 +55,10 @@
 }
 
 .card-right p {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: bold;
   opacity: 0.85;
+  text-transform: uppercase;
   margin-bottom: 8px;
   color: #334155;
 }
@@ -86,6 +87,10 @@
 }
 
 .card-4 {
+  background: linear-gradient(135deg, #ffedd5, #fed7aa);
+}
+
+.card-5 {
   background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
 }
 
@@ -97,6 +102,7 @@
   .dashboard-title {
     font-size: 24px;
     margin-bottom: 30px;
+    
   }
 
   .dashboard-grid {

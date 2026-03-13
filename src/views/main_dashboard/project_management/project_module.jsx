@@ -215,7 +215,13 @@ function ProjectModules() {
       render: (value) => <div>{value ?? "-"}</div>,
     },
     { key: "modulename", label: "Module Name" },
-    { key: "description", label: "Description" },
+    {
+      key: "description",
+      label: "Description",
+      render: (value) => (
+        <div>{value !== null && value !== "" ? value : "-"}</div>
+      ),
+    },
   ];
 
   if (isPageLoading) return <CustomLoadingindicator />;

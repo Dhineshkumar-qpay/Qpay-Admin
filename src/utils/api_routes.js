@@ -1,5 +1,6 @@
 const ApiRoutes = {
-  baseUrl:"https://qpay-project-managenent-production.up.railway.app",
+  // baseUrl: "https://qpay-project-managenent-production.up.railway.app",
+  baseUrl: "http://localhost:3000",
   login: "/admin/login",
   totalcounts: "/admin/report-count",
   addEmployee: "/employees/add",
@@ -28,6 +29,8 @@ const ApiRoutes = {
   clientDelete: "/clients/delete",
   clientUpdate: "/clients/update",
   updateClientStatus: "/clients/update-status",
+  leaveList: "/leave/getallleaves",
+  updateLeaveStatus: "/leave/update-status",
 };
 
 export default ApiRoutes;

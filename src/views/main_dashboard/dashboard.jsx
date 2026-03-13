@@ -17,6 +17,11 @@ function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [recentReports, setRecentReports] = useState([]);
   const [employeeHours, setEmployeeHours] = useState([]);
+  const [stats, setStats] = useState({
+    pendingLeaves: 0,
+    approvedLeaves: 0,
+    activeProjects: 0,
+  });
   const [cards, setCards] = useState([
     {
       title: "Employees",
@@ -31,16 +36,22 @@ function Dashboard() {
       route: AppRoutes.projects,
     },
     {
-      title: "Assignments",
+      title: "Clients",
       value: 0,
-      icon: "https://cdn-icons-png.flaticon.com/128/4661/4661361.png",
-      route: AppRoutes.assignProject,
+      icon: "https://cdn-icons-png.flaticon.com/128/17873/17873047.png",
+      route: AppRoutes.clients,
     },
     {
       title: "Work Reports",
       value: 0,
       icon: "https://cdn-icons-png.flaticon.com/128/18590/18590813.png",
       route: AppRoutes.workreports,
+    },
+    {
+      title: "Pending Leaves",
+      value: 0,
+      icon: "https://cdn-icons-png.flaticon.com/128/10691/10691802.png",
+      route: AppRoutes.leave,
     },
     {
       title: "Timesheet Summary",
@@ -61,12 +72,24 @@ function Dashboard() {
       ]);
 
       if (countsRes.status === "success") {
+        const {
+          employees,
+          projects,
+          clients,
+          reports,
+          pendingLeaves,
+          summaries,
+          approvedLeaves,
+          activeProjects,
+        } = countsRes.data;
+
         const totalCounts = [
-          countsRes.data.employees,
-          countsRes.data.projects,
-          countsRes.data.assignments,
-          countsRes.data.reports,
-          countsRes.data.summaries,
+          employees,
+          projects,
+          clients,
+          reports,
+          pendingLeaves,
+          summaries,
         ];
 
         setCards((prev) =>
@@ -75,6 +98,12 @@ function Dashboard() {
             value: totalCounts[index] || 0,
           })),
         );
+
+        setStats({
+          pendingLeaves,
+          approvedLeaves,
+          activeProjects,
+        });
       }
 
       const todayReports =
@@ -152,7 +181,7 @@ function Dashboard() {
 
   return (
     <div className="dashboard-wrapper">
-      <h2 className="dashboard-title">Dashboard Overview</h2>
+      <h2 className="dashboard-title">Welcome Admin!!</h2>
 
       <div className="dashboard-grid">
         {cards.map((card, index) => (
@@ -171,6 +200,192 @@ function Dashboard() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="stats-insight-section" style={{ marginTop: "50px" }}>
+        <div
+          className="stats-insight-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "24px",
+          }}
+        >
+          {/* Project Status Card */}
+          <div
+            className="stat-insight-card"
+            style={{
+              background: "linear-gradient(to bottom right, #ffffff, #f8fafc)",
+              padding: "24px",
+              borderRadius: "20px",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.04)",
+              border: "1px solid #e2e8f0",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "4px",
+                height: "100%",
+                background: "#10b981",
+              }}
+            ></div>
+            <h4
+              style={{
+                margin: "0 0 20px 0",
+                color: "#000000",
+                fontSize: "13px",
+                fontWeight: "700",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              Project Real-time Status
+            </h4>
+            <div className="stat-insight-content">
+              <div
+                className="stat-item"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "12px",
+                }}
+              >
+                <span style={{ color: "#64748b", fontWeight: "500" }}>
+                  Active Projects
+                </span>
+                <strong style={{ color: "#1e293b", fontSize: "20px" }}>
+                  {stats.activeProjects}
+                </strong>
+              </div>
+              <div
+                className="stat-item"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "18px",
+                }}
+              >
+                <span style={{ color: "#64748b", fontWeight: "500" }}>
+                  Total Projects
+                </span>
+                <strong style={{ color: "#64748b", fontSize: "16px" }}>
+                  {cards[1]?.value}
+                </strong>
+              </div>
+            </div>
+          </div>
+
+          {/* Leave Management Card */}
+          <div
+            className="stat-insight-card"
+            style={{
+              background: "linear-gradient(to bottom right, #ffffff, #fffcf9)",
+              padding: "24px",
+              borderRadius: "20px",
+              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.04)",
+              border: "1px solid #e2e8f0",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "4px",
+                height: "100%",
+                background: "#f59e0b",
+              }}
+            ></div>
+            <h4
+              style={{
+                margin: "0 0 20px 0",
+                color: "#000000",
+                fontSize: "13px",
+                fontWeight: "700",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              Leave Management Summary
+            </h4>
+            <div className="stat-insight-content">
+              <div
+                className="stat-item"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "12px",
+                }}
+              >
+                <span style={{ color: "#64748b", fontWeight: "500" }}>
+                  Pending Requests
+                </span>
+                <strong style={{ color: "#f59e0b", fontSize: "24px" }}>
+                  {stats.pendingLeaves}
+                </strong>
+              </div>
+              <div
+                className="stat-item"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "18px",
+                }}
+              >
+                <span style={{ color: "#64748b", fontWeight: "500" }}>
+                  Approved Today
+                </span>
+                <strong style={{ color: "#10b981", fontSize: "18px" }}>
+                  {stats.approvedLeaves}
+                </strong>
+              </div>
+              <div
+                className="leave-status-tag"
+                style={{
+                  marginTop: "10px",
+                  padding: "12px",
+                  borderRadius: "12px",
+                  fontSize: "13px",
+                  fontWeight: "700",
+                  textAlign: "center",
+                  backgroundColor:
+                    stats.pendingLeaves > 0 ? "#fffbeb" : "#f0fdf4",
+                  color: stats.pendingLeaves > 0 ? "#b45309" : "#15803d",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                  border: `1px solid ${stats.pendingLeaves > 0 ? "#fef3c7" : "#dcfce7"}`,
+                  boxShadow:
+                    stats.pendingLeaves > 0
+                      ? "0 2px 10px rgba(245, 158, 11, 0.05)"
+                      : "none",
+                }}
+              >
+                <span
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    backgroundColor:
+                      stats.pendingLeaves > 0 ? "#f59e0b" : "#10b981",
+                    boxShadow: `0 0 8px ${stats.pendingLeaves > 0 ? "rgba(245, 158, 11, 0.4)" : "rgba(16, 185, 129, 0.4)"}`,
+                  }}
+                ></span>
+                {stats.pendingLeaves > 0
+                  ? `${stats.pendingLeaves} Review(s) Required`
+                  : "No Outstanding Actions"}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="employee-working-section" style={{ marginTop: "40px" }}>

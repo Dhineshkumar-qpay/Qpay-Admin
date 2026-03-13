@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./views/login/login.jsx";
 import MainDashboard from "./views/main_dashboard/maindashboard.jsx";
@@ -11,6 +12,7 @@ import TimeSheetSummary from "./views/main_dashboard/time_sheet_summary/time_she
 import ProjectModules from "./views/main_dashboard/project_management/project_module.jsx";
 import Clients from "./views/main_dashboard/client_management/clients.jsx";
 import { ToastContainer } from "react-toastify";
+import Leaves from "./views/main_dashboard/leave/leave.jsx";
 
 const ProtectedRoute = ({ children }) => {
   const adminToken = localStorage.getItem("adminToken");
@@ -33,6 +35,22 @@ const PublicRoute = ({ children }) => {
 };
 
 function App() {
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      // If adminToken is removed (logout) in another tab
+      if (e.key === "adminToken" && !e.newValue) {
+        window.location.href = "/login";
+      }
+      // Handle localStorage.clear()
+      if (e.key === null && localStorage.getItem("adminToken") === null) {
+        window.location.href = "/login";
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -61,6 +79,7 @@ function App() {
           <Route path={AppRoutes.workreports} element={<WorkReports />} />
           <Route path={AppRoutes.summmary} element={<TimeSheetSummary />} />
           <Route path={AppRoutes.clients} element={<Clients />} />
+          <Route path={AppRoutes.leave} element={<Leaves />} />
         </Route>
       </Routes>
       <ToastContainer
