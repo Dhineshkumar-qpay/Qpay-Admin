@@ -61,6 +61,7 @@
   text-transform: uppercase;
   margin-bottom: 8px;
   color: #334155;
+  margin-left: 10px;
 }
 
 .card-right h3 {
@@ -68,6 +69,7 @@
   font-weight: 700;
   color: #0f172a;
   margin: 0;
+  margin-left: 10px;
 }
 
 .card-0 {
@@ -102,7 +104,6 @@
   .dashboard-title {
     font-size: 24px;
     margin-bottom: 30px;
-    
   }
 
   .dashboard-grid {
